@@ -14,11 +14,11 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (Validator.isEmpty(data.name)) {
-        errors.name = 'Name files is requried';
+        errors.name = 'Name field is requried';
     }
 
     if (Validator.isEmpty(data.email)) {
-        errors.email = 'Email files is requried';
+        errors.email = 'Email field is requried';
     }
 
     if (!Validator.isEmail(data.email)) {
@@ -26,7 +26,7 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (Validator.isEmpty(data.password)) {
-        errors.password = 'Password files is requried';
+        errors.password = 'Password field is requried';
     }
 
     if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
@@ -34,7 +34,7 @@ module.exports = function validateRegisterInput(data) {
     }
 
     if (Validator.isEmpty(data.password2)) {
-        errors.password2 = 'Confirm Password files is requried';
+        errors.password2 = 'Confirm Password field is requried';
     }
 
     if (!Validator.equals(data.password, data.password2)) {
