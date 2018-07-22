@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 class Login extends Component {
     constructor() {
@@ -23,7 +24,8 @@ class Login extends Component {
             password: this.state.password
         }
 
-        console.log(user);
+        axios.post('/api/users/login', user)
+            .then(res => console.log(res.data));
     }
 
     render() {
