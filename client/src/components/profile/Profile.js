@@ -16,6 +16,13 @@ class Profile extends Component {
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.profile.profile === null && this.props.profile.loading) {
+            // TODO: this is not working because loading prop is broken somewhere
+            this.props.history.push('/not-found');
+        }
+    }
+
     render() {
         const { profile, loading } = this.props.profile;
         let profileContent;
@@ -36,24 +43,24 @@ class Profile extends Component {
                     <ProfileHeader profile={profile} />
                     <ProfileAbout profile={profile} />
                     <ProfileCreds education={profile.education} experience={profile.experience} />
-                    <ProfileGithub />
+                    {profile.githubusername ? (<ProfileGithub username={profile.githubusername} />) : null}
                 </div>
             );
         }
 
         return (
-                    <div>
-                        <div className="container">
-                            <div className="row">
-                                <div className="col-md-12">
-                                    {profileContent}
-                                </div>
-                            </div>
+            <div>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            {profileContent}
                         </div>
                     </div>
-                )
-            }       
-        }
+                </div>
+            </div>
+        )
+    }
+}
 
 Profile.propTypes = {
     getProfileByHandle: PropTypes.func.isRequired,
@@ -61,7 +68,7 @@ Profile.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    profile: state.profile              
+    profile: state.profile
 });
 
-export default connect(mapStateToProps, {getProfileByHandle})(Profile);
+export default connect(mapStateToProps, { getProfileByHandle })(Profile);
