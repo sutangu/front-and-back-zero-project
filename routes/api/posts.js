@@ -45,7 +45,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     // Check Validation
     if (!isValid) {
         // If any errors, send 400 with errors object
-        return req.statusCode(400).json(errors);
+        return res.status(400).json(errors);
     }
 
     const newPost = new Post({
@@ -135,7 +135,7 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
     // Check Validation
     if (!isValid) {
         // If any errors, send 400 with errors object
-        return req.statusCode(400).json(errors);
+        return res.status(400).json(errors);
     }
 
     Post.findById(req.params.id)
