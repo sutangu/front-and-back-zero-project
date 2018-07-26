@@ -12,7 +12,7 @@ class Posts extends Component {
     }
 
     render() {
-        const { posts, loading } = this.props;
+        const { posts, loading } = this.props.post;
         let postContent;
 
         if (posts === null || loading) {
@@ -41,8 +41,8 @@ Posts.propTypes = {
     post: PropTypes.object.isRequired
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = state => ({
     post: state.post
-};
+});
 
 export default connect(mapStateToProps, { getPosts })(Posts);
