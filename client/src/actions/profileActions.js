@@ -5,7 +5,8 @@ import { GET_PROFILE, GET_PROFILES, PROFILE_LOADING, CLEAR_CURRENT_PROFILE, GET_
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
     dispatch(setProfileLoading());
-    axios.get('/api/profile')
+    axios
+        .get('/api/profile')
         .then(res =>
             dispatch({
                 type: GET_PROFILE,
@@ -22,7 +23,8 @@ export const getCurrentProfile = () => dispatch => {
 // Get profile by handle
 export const getProfileByHandle = handle => dispatch => {
     dispatch(setProfileLoading());
-    axios.get(`/api/profile/handle/${handle}`)
+    axios
+        .get(`/api/profile/handle/${handle}`)
         .then(res =>
             dispatch({
                 type: GET_PROFILE,
